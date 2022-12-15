@@ -1,0 +1,44 @@
+CREATE DATABASE db_zero_to_hero;
+
+USE db_zero_to_hero;
+
+CREATE TABLE users (
+  users_id INT NOT NULL,
+  nome VARCHAR(100) NULL,
+  email VARCHAR(50) NOT NULL,
+  PRIMARY KEY (users_id)
+  )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+INSERT INTO users VALUES
+(01,'Douglas Luiz', 'dl@gmail.com'),
+(02,'Barbara Katleen', 'bk@gmail.com'),
+(03,'Arthur Phelipe', 'ap@gmail.com'),
+(04,'Deise Terezinha', 'dt@gmail.com'),
+(05,'Luiz Carlos', 'lc@gmail.com');
+
+SELECT *FROM users;
+
+CREATE TABLE comments (
+  comments_id INT NOT NULL,
+  comments VARCHAR(255) NULL,
+  users_id INT NOT NULL,
+  PRIMARY KEY (comments_id),
+  CONSTRAINT comments_table FOREIGN KEY (users_id) REFERENCES users (users_id)
+  )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+CREATE TABLE posts (
+  posts_id INT NOT NULL,
+  posts VARCHAR(255) NULL,
+  users_id INT NOT NULL,
+  PRIMARY KEY (posts_id),
+  CONSTRAINT posts_table FOREIGN KEY (users_id) REFERENCES users (users_id)
+  )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
